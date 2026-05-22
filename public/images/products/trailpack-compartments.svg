@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">TrailPack compartments</title>
+  <desc id="desc">Minimal detail placeholder showing separate water and treat compartments.</desc>
+  <rect width="800" height="800" fill="#fbf8f1"/>
+  <rect x="220" y="110" width="360" height="580" rx="90" fill="#ffffff" stroke="#21382f" stroke-width="26"/>
+  <path d="M230 400h340" stroke="#21382f" stroke-width="26"/>
+  <rect x="300" y="185" width="200" height="150" rx="24" fill="#91aa88" opacity=".72"/>
+  <circle cx="350" cy="520" r="34" fill="#c98768" opacity=".75"/>
+  <circle cx="448" cy="560" r="34" fill="#c98768" opacity=".75"/>
+</svg>

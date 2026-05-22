@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">WalkSip outdoor use</title>
+  <desc id="desc">Minimal lifestyle placeholder for WalkSip during an outdoor walk.</desc>
+  <rect width="800" height="800" fill="#fbf8f1"/>
+  <path d="M0 560c170-60 320-62 800 30v210H0z" fill="#e7dac7"/>
+  <circle cx="650" cy="150" r="70" fill="#c98768" opacity=".35"/>
+  <path d="M190 515h210" stroke="#21382f" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="210" cy="455" r="55" fill="#21382f"/>
+  <rect x="245" y="430" width="175" height="92" rx="45" fill="#21382f"/>
+  <rect x="510" y="300" width="88" height="250" rx="42" fill="#ffffff" stroke="#21382f" stroke-width="18"/>
+  <path d="M485 520h140v40c0 44-31 80-70 80s-70-36-70-80z" fill="#91aa88" stroke="#21382f" stroke-width="16"/>
+</svg>

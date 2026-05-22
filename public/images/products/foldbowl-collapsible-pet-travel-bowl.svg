@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">FoldBowl collapsible pet travel bowl</title>
+  <desc id="desc">Minimal product placeholder for a collapsible pet travel bowl.</desc>
+  <rect width="800" height="800" fill="#fbf8f1"/>
+  <circle cx="610" cy="210" r="125" fill="#dfe8d9"/>
+  <path d="M185 355h430l-58 230c-12 48-55 82-105 82H348c-50 0-93-34-105-82z" fill="#ffffff" stroke="#21382f" stroke-width="28"/>
+  <path d="M215 355c38 62 330 62 370 0" fill="none" stroke="#c98768" stroke-width="34" stroke-linecap="round"/>
+  <path d="M275 485h250" stroke="#91aa88" stroke-width="28" stroke-linecap="round"/>
+</svg>

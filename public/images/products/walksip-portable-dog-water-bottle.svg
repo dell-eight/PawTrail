@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">WalkSip portable dog water bottle</title>
+  <desc id="desc">Minimal product placeholder for a portable dog water bottle with a built-in bowl.</desc>
+  <rect width="800" height="800" fill="#fbf8f1"/>
+  <circle cx="610" cy="190" r="118" fill="#e7dac7"/>
+  <circle cx="205" cy="610" r="150" fill="#dfe8d9"/>
+  <rect x="330" y="145" width="140" height="420" rx="66" fill="#ffffff" stroke="#21382f" stroke-width="28"/>
+  <rect x="365" y="92" width="70" height="70" rx="20" fill="#21382f"/>
+  <path d="M290 520h220v58c0 62-49 112-110 112s-110-50-110-112z" fill="#91aa88" stroke="#21382f" stroke-width="24"/>
+  <path d="M356 245h88v190h-88z" fill="#91aa88" opacity=".72"/>
+</svg>

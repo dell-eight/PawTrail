@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">WalkSip bottle detail</title>
+  <desc id="desc">Minimal detail placeholder showing the built-in bowl area of the WalkSip bottle.</desc>
+  <rect width="800" height="800" fill="#fbf8f1"/>
+  <rect x="250" y="110" width="300" height="470" rx="80" fill="#ffffff" stroke="#21382f" stroke-width="26"/>
+  <path d="M230 510h340v70c0 88-75 158-170 158s-170-70-170-158z" fill="#91aa88" stroke="#21382f" stroke-width="24"/>
+  <path d="M320 215h160v210H320z" fill="#e7dac7"/>
+</svg>
