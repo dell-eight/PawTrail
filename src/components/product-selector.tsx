@@ -19,44 +19,44 @@ type SelectorOption = {
 const selectorOptions: SelectorOption[] = [
   {
     id: "hydration-outside",
-    need: "Hydration outside",
-    label: "My pet gets thirsty on walks.",
+    need: "Hydrate",
+    label: "My pet needs quick water breaks.",
     productSlug: "walksip-portable-dog-water-bottle",
     reason:
-      "A built-in bowl makes quick water breaks easier when you are close to home, at the park, or running errands.",
+      "A built-in drinking setup keeps hydration easy when you are close to home, at the park, or running errands.",
     followUp: "Best first pick for daily walks and short outdoor breaks.",
-    ctaText: "View WalkSip Bottle",
+    ctaText: "View Hydration Pick",
     ctaHref: "/products/walksip-portable-dog-water-bottle",
   },
   {
     id: "carrying-essentials",
-    need: "Carrying essentials",
-    label: "I need water and small treats together.",
-    productSlug: "trailpack-2-in-1-pet-water-treat-bottle",
-    reason:
-      "Water and treats stay together, so longer outings need fewer loose containers in your bag.",
-    followUp: "Best for road trips, park days, and longer errands.",
-    ctaText: "View TrailPack Bottle",
-    ctaHref: "/products/trailpack-2-in-1-pet-water-treat-bottle",
-  },
-  {
-    id: "cleaner-outdoor-stops",
-    need: "Cleaner stops after walks",
-    label: "I want a cleaner food or water spot.",
+    need: "Clean",
+    label: "I want cleaner returns after walks.",
     productSlug: "foldbowl-collapsible-pet-travel-bowl",
     reason:
-      "A foldable bowl gives you a compact backup for food or water without taking much space.",
-    followUp: "Best budget add-on for travel bags, cafes, parks, and cars.",
-    ctaText: "View FoldBowl",
+      "A compact cleanup pack helps light outdoor mess feel easier before you get back in the car or step inside.",
+    followUp: "Best for parks, errands, car rides, and travel days.",
+    ctaText: "View Cleanup Pick",
     ctaHref: "/products/foldbowl-collapsible-pet-travel-bowl",
   },
   {
-    id: "complete-kit",
-    need: "Full walk/travel kit",
-    label: "I want the most prepared setup.",
-    recommendationTitle: "Bundle all 3 products",
+    id: "cleaner-outdoor-stops",
+    need: "Carry",
+    label: "I want fewer loose walk-day items.",
+    productSlug: "trailpack-2-in-1-pet-water-treat-bottle",
     reason:
-      "Pair hydration, snack storage, and a compact bowl when you want the most prepared setup for walks and travel.",
+      "A carry pouch keeps small essentials grouped so longer outings feel less scattered.",
+    followUp: "Best for road trips, park days, and longer errands.",
+    ctaText: "View Carry Pick",
+    ctaHref: "/products/trailpack-2-in-1-pet-water-treat-bottle",
+  },
+  {
+    id: "complete-kit",
+    need: "Full routine",
+    label: "I want the most prepared setup.",
+    recommendationTitle: "Compare the full Wag & Roam routine",
+    reason:
+      "Pair hydration, cleanup, and organized carry when you want the most prepared setup for walks and travel.",
     followUp: "Best when you want one simple kit instead of deciding item by item.",
     ctaText: "Compare All 3 Products",
     ctaHref: "/shop",
@@ -81,10 +81,10 @@ export function ProductSelector() {
       <div className="container selector-layout">
         <div className="section-heading">
           <p className="eyebrow">Quick product finder</p>
-          <h2>Choose by the problem you want to solve.</h2>
+          <h2>Choose by the outing job you want to solve.</h2>
           <p>
             Answer one simple question and get a practical recommendation from
-            the three-product collection.
+            the hydrate, clean, and carry routine.
           </p>
         </div>
 

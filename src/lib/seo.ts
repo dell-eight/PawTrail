@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
-export const siteName = "PawTrail";
+export const siteName = "Wag & Roam";
 
 export const homepageTitle =
-  "PawTrail | Simple Pet Walk & Travel Essentials";
+  "Wag & Roam | Premium Pet Walk & Travel Essentials";
 
 export const homepageDescription =
-  "Shop minimalist pet walk and travel accessories for easier hydration, feeding, and outdoor care during walks, parks, and trips.";
+  "Shop minimalist pet walk and travel accessories for calmer outings, easier hydration, simple cleanup, and organized essentials.";
 
 export function getSiteUrl() {
   const siteUrl =

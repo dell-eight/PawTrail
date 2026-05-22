@@ -26,7 +26,7 @@ export function SiteHeader() {
         >
           <span className="brand-symbol" aria-hidden="true" />
           <span>
-            <span className="brand-name">PawTrail</span>
+            <span className="brand-name">Wag & Roam</span>
             <span className="brand-tagline">Walk & travel essentials</span>
           </span>
         </Link>

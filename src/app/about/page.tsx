@@ -5,7 +5,7 @@ import { buildSeoMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildSeoMetadata({
   title: "About | Pet Walk & Travel Accessories",
   description:
-    "Learn about a focused pet walk and travel accessories store built around simple outdoor care, hydration, and feeding essentials.",
+    "Learn about a focused pet walk and travel accessories store built around hydration, cleanup, and organized carry essentials.",
 });
 
 const values = [
@@ -15,7 +15,7 @@ const values = [
   },
   {
     title: "Focused collection",
-    body: "The launch store stays small on purpose: hydration, snacks, and a compact travel bowl.",
+    body: "The launch store stays small on purpose: hydration, cleanup, and organized carry.",
   },
   {
     title: "Clear support",

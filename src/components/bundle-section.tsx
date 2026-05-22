@@ -23,32 +23,33 @@ const bundles: Bundle[] = [
       "foldbowl-collapsible-pet-travel-bowl",
     ],
     bestUseCase:
-      "Best for short walks, park breaks, and quick outdoor water stops.",
-    savingsMessage: "Suggested pairing for daily walks.",
+      "Best for short walks, park breaks, and simple hydration or clean-stop moments.",
+    savingsMessage: "Daily walk routine",
     ctaText: "Choose Daily Walk Kit",
     ctaHref: "/products/walksip-portable-dog-water-bottle",
   },
   {
     id: "weekend-travel-kit",
-    name: "Weekend Travel Kit",
+    name: "Travel Day Kit",
     productSlugs: [
       "trailpack-2-in-1-pet-water-treat-bottle",
+      "walksip-portable-dog-water-bottle",
       "foldbowl-collapsible-pet-travel-bowl",
     ],
     bestUseCase:
-      "Best for longer walks, road trips, and pet-friendly weekend errands.",
-    savingsMessage: "Suggested pairing for longer outings.",
-    ctaText: "Choose Weekend Travel Kit",
+      "Best for longer walks, road trips, and pet-friendly errands when you want water, cleanup, and carry handled together.",
+    savingsMessage: "Longer outing routine",
+    ctaText: "Choose Travel Day Kit",
     ctaHref: "/products/trailpack-2-in-1-pet-water-treat-bottle",
   },
   {
     id: "complete-outdoor-kit",
-    name: "Complete Outdoor Kit",
+    name: "Complete Outing Routine",
     productSlugs: products.map((product) => product.slug),
     bestUseCase:
-      "Best for pet parents who want hydration, snacks, and a backup bowl ready together.",
-    savingsMessage: "Suggested complete outdoor kit.",
-    ctaText: "Choose Complete Kit",
+      "Best for pet parents who want hydration, cleaner stops, and organized carry ready together.",
+    savingsMessage: "Hydrate, clean, carry",
+    ctaText: "Compare Complete Routine",
     ctaHref: "/shop",
   },
 ];
@@ -86,16 +87,16 @@ export function BundleSection() {
       <div className="container bundle-layout">
         <div className="section-heading">
           <p className="eyebrow">Kit ideas</p>
-          <h2>Build your pet travel kit around the routine.</h2>
+          <h2>Build your pet outing routine around the day.</h2>
           <p>
-            Pair the three essentials by how you walk, travel, and stop for
-            food or water breaks.
+            Pair the essentials by how you hydrate, clean up, and carry what
+            your pet needs outside the home.
           </p>
         </div>
 
         <div className="bundle-selector-panel">
           <fieldset className="bundle-choice-list">
-            <legend>Choose a kit idea</legend>
+            <legend>Choose a routine idea</legend>
             {bundles.map((bundle) => (
               <label
                 className="bundle-choice"
@@ -157,7 +158,8 @@ export function BundleSection() {
         </div>
 
         <p className="bundle-note">
-          Bundle availability and any discounts can be finalized before launch.
+          Bundle availability and final product pairings can be finalized before
+          launch.
         </p>
       </div>
     </section>

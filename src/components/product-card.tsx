@@ -10,7 +10,7 @@ type ProductCardProps = {
 
 export function ProductCard({ product, bestFor }: ProductCardProps) {
   const bestForLabel = bestFor ?? product.bestFor;
-  const featurePreview = product.features.slice(0, 2);
+  const featurePreview = product.features.slice(0, 3);
 
   return (
     <article className="product-card" id={product.slug}>

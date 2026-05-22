@@ -20,19 +20,19 @@ const bundleSuggestions: Record<
   "walksip-portable-dog-water-bottle": {
     name: "Daily Walk Kit",
     description:
-      "Pair WalkSip with FoldBowl when you want hydration plus a compact backup bowl.",
+      "Pair RoamSip with CleanPaws when you want water breaks and a cleaner return after daily walks.",
     href: "/#bundles",
   },
   "trailpack-2-in-1-pet-water-treat-bottle": {
-    name: "Weekend Travel Kit",
+    name: "Travel Day Kit",
     description:
-      "Pair TrailPack with FoldBowl for longer walks, road trips, and outdoor snack breaks.",
+      "Pair RoamPack with RoamSip and CleanPaws for organized carry, water breaks, and cleanup support on longer outings.",
     href: "/#bundles",
   },
   "foldbowl-collapsible-pet-travel-bowl": {
-    name: "Complete Outdoor Kit",
+    name: "Clean Return Kit",
     description:
-      "Add FoldBowl to either bottle option for a more prepared pet walk setup.",
+      "Pair CleanPaws with RoamPack so cleanup items and small essentials stay easy to grab after parks and travel stops.",
     href: "/#bundles",
   },
 };
@@ -40,38 +40,38 @@ const bundleSuggestions: Record<
 const faqs: Record<string, { question: string; answer: string }[]> = {
   "walksip-portable-dog-water-bottle": [
     {
-      question: "When is WalkSip most useful?",
+      question: "When is RoamSip most useful?",
       answer:
-        "It is useful for daily walks, park visits, errands, and car rides when your dog may need a quick water break.",
+        "It is useful for daily walks, park visits, errands, and car rides when your pet may need a quick water break.",
     },
     {
-      question: "Does this replace every travel bowl?",
+      question: "Does RoamSip replace a separate travel bowl?",
       answer:
-        "It helps with quick drinking breaks, but a separate bowl can still be helpful for longer food or water stops.",
+        "It covers quick drinking breaks with an attached bowl area, while a larger separate bowl may still help for longer meals or rest stops.",
     },
   ],
   "trailpack-2-in-1-pet-water-treat-bottle": [
     {
-      question: "What outings is TrailPack best for?",
+      question: "What should I keep in RoamPack?",
       answer:
-        "It is best for longer walks, road trips, park days, and outdoor moments where water and small treats are both useful.",
+        "Use it for small outing items like cleanup packs, light accessories, clips, and the extras you reach for during walks or travel days.",
     },
     {
-      question: "Why choose this over a simple bottle?",
+      question: "When is RoamPack most useful?",
       answer:
-        "It keeps hydration and treats together, which can reduce the number of separate containers in your bag.",
+        "It is most useful for longer walks, park days, car rides, and trips where loose essentials can scatter in a tote, stroller, or car.",
     },
   ],
   "foldbowl-collapsible-pet-travel-bowl": [
     {
-      question: "Can FoldBowl be used for food and water?",
+      question: "What is CleanPaws for?",
       answer:
-        "Yes, it is positioned as a compact bowl option for either food or water breaks while away from home.",
+        "It is an everyday after-walk cleanup helper for light outdoor mess before your pet gets back into the car or home.",
     },
     {
-      question: "When should I bring a collapsible bowl?",
+      question: "Is CleanPaws a medical or sanitizing product?",
       answer:
-        "Bring it for walks, park visits, cafes, car rides, or travel days when your pet may need a simple food or water spot.",
+        "No. It is positioned as an everyday cleanup product, and supplier instructions should be confirmed before the store goes live.",
     },
   ],
 };
@@ -175,7 +175,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       <section className="section section-muted">
         <div className="container product-info-grid">
           <article className="info-card">
-            <span className="product-label">Main benefit</span>
+            <span className="product-label">Solves</span>
             <h3>{product.mainBenefit}</h3>
           </article>
           <article className="info-card">
@@ -227,12 +227,12 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <article className="step-card">
               <span>2</span>
               <h3>Use it during outdoor breaks</h3>
-              <p>Offer water, snacks, or a bowl depending on your pet routine.</p>
+              <p>Use the hydration, cleanup, or carry support that matches the moment.</p>
             </article>
             <article className="step-card">
               <span>3</span>
-              <h3>Clean and store after use</h3>
-              <p>Rinse after outings and let it dry before the next walk.</p>
+              <h3>Reset it after use</h3>
+              <p>Follow the care notes and store it where your next walk starts.</p>
             </article>
           </div>
         </div>
@@ -241,7 +241,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       <section className="section">
         <div className="container product-notes-grid">
           <article className="note-card">
-            <h2>What’s included</h2>
+            <h2>What's included</h2>
             <ul className="product-detail-list">
               {product.whatsIncluded.map((item) => (
                 <li key={item}>{item}</li>

@@ -23,12 +23,12 @@ export function SiteFooter() {
           <Link className="brand-mark" href="/">
             <span className="brand-symbol" aria-hidden="true" />
             <span>
-              <span className="brand-name">PawTrail</span>
+              <span className="brand-name">Wag & Roam</span>
               <span className="brand-tagline">Walk & travel essentials</span>
             </span>
           </Link>
           <p>
-            Simple outdoor essentials for happier pet walks and cleaner travel
+            Calm, practical essentials for easier pet walks and cleaner travel
             days.
           </p>
         </div>

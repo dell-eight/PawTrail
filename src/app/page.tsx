@@ -16,55 +16,37 @@ export const metadata: Metadata = buildSeoMetadata({
   description: homepageDescription,
 });
 
-const heroActions = [
-  {
-    href: "/shop",
-    label: "Shop products",
-    description: "See the 3-piece walk and travel collection.",
-  },
-  {
-    href: "#product-selector",
-    label: "Find my product",
-    description: "Choose by daily walks, travel days, or backup bowl needs.",
-  },
-  {
-    href: "#bundles",
-    label: "Build a travel kit",
-    description: "Pair the essentials for a simpler outdoor routine.",
-  },
+const heroTrustCues = [
+  "Made for daily walks",
+  "Cleaner travel stops",
+  "Organized essentials",
 ];
 
 const problemSolutions = [
   {
-    problem: "Thirsty pet outside",
-    solution: "Offer water without packing a separate bowl.",
+    problem: "Hydrate",
+    solution: "Make quick water breaks easier.",
     description:
-      "A walk-ready bottle keeps quick hydration breaks simple at the park, in the car, or during errands.",
+      "Keep a simple drinking setup ready for parks, errands, car rides, and longer walks.",
   },
   {
-    problem: "Too many loose items",
-    solution: "Keep water and small treats together.",
+    problem: "Clean",
+    solution: "Plan for messier outdoor moments.",
     description:
-      "A 2-in-1 bottle helps reduce the bag clutter that builds up on longer outings.",
+      "After-walk cleanup, muddy paws, and travel stops feel calmer when the routine is prepared.",
   },
   {
-    problem: "Messy outdoor stops",
-    solution: "Bring a compact bowl for food or water.",
+    problem: "Carry",
+    solution: "Keep small essentials from scattering.",
     description:
-      "A foldable bowl gives your pet a cleaner place to pause without taking over your bag.",
-  },
-  {
-    problem: "Travel stress",
-    solution: "Build a small kit before leaving.",
-    description:
-      "The three-product collection keeps outdoor pet care focused: hydration, snacks, and a backup bowl.",
+      "Choose pieces that reduce loose bottles, cleanup items, clips, and small walk-day add-ons.",
   },
 ];
 
 const bestForLabels: Record<string, string> = {
-  "walksip-portable-dog-water-bottle": "Best for daily walks",
-  "trailpack-2-in-1-pet-water-treat-bottle": "Best for longer trips",
-  "foldbowl-collapsible-pet-travel-bowl": "Best budget add-on",
+  "walksip-portable-dog-water-bottle": "Hydrate on the go",
+  "foldbowl-collapsible-pet-travel-bowl": "Clean after walks",
+  "trailpack-2-in-1-pet-water-treat-bottle": "Carry essentials",
 };
 
 const homepageTrustBadges = [
@@ -74,19 +56,19 @@ const homepageTrustBadges = [
   },
   {
     href: "/shipping-policy",
-    label: "Shipping details before live orders",
+    label: "Shipping details easy to find",
   },
   {
     href: "/refund-policy",
-    label: "Refund and wrong-item guidance",
+    label: "Refund guidance kept visible",
   },
   {
     href: "/contact",
-    label: "Support details before ordering",
+    label: "Support before ordering",
   },
   {
     href: "/shop",
-    label: "Pet-friendly essentials",
+    label: "Focused 3-piece collection",
   },
 ];
 
@@ -94,17 +76,17 @@ const faqPreviewItems = [
   {
     question: "How long does shipping take?",
     answer:
-      "Shipping timelines are being finalized and will be shown clearly before launch.",
+      "Shipping timelines will be shown clearly before checkout is enabled for live orders.",
   },
   {
     question: "What payment methods do you accept?",
     answer:
-      "Payment options will be shown securely at checkout once payment setup is connected.",
+      "Payment options will be shown securely once the checkout provider is connected.",
   },
   {
-    question: "What if my item arrives damaged?",
+    question: "Which product should I start with?",
     answer:
-      "Support guidance for damaged or wrong items will be included in the final refund policy.",
+      "Start with hydration for daily walks, cleanup for messy returns, or organized carry for longer outings.",
   },
 ];
 
@@ -114,54 +96,50 @@ export default function Home() {
       <section className="section section-hero homepage-hero">
         <div className="container hero-grid">
           <div className="stack stack-lg">
-            <p className="eyebrow">3-piece pet walk collection</p>
+            <p className="eyebrow">Wag & Roam walk and travel essentials</p>
             <div className="stack">
-              <h1>Simple gear for walks, parks, and travel days.</h1>
+              <h1>
+                Premium pet outing essentials for calmer walks, cleaner stops,
+                and easier carry.
+              </h1>
               <p className="lede">
-                A focused set of three pet accessories for hydration, snacks,
-                and food or water breaks outside the home.
+                Minimal gear for hydration, after-walk cleanup, and organized
+                pet essentials, made for daily walks, park breaks, errands, and
+                travel days.
               </p>
             </div>
             <div className="button-row">
               <Link className="button button-primary" href="/shop">
-                Shop the 3-Piece Walk Kit
+                Shop the Essentials
               </Link>
               <a className="button button-secondary" href="#product-selector">
-                Find the Right Accessory
-              </a>
-              <a className="button button-secondary" href="#bundles">
-                Build Your Pet Travel Kit
+                Find Your Outing Kit
               </a>
             </div>
-            <div className="hero-action-list" aria-label="Homepage shopping paths">
-              {heroActions.map((action) => (
-                <a href={action.href} key={action.label}>
-                  <span>{action.label}</span>
-                  <small>{action.description}</small>
-                </a>
+            <div className="hero-trust-list" aria-label="Wag and Roam trust cues">
+              {heroTrustCues.map((cue) => (
+                <span key={cue}>{cue}</span>
               ))}
             </div>
           </div>
 
-          <div
-            className="hero-lifestyle"
-          >
+          <div className="hero-lifestyle">
             <Image
-              alt="Border Collie on a leash during an outdoor walk with its owner"
+              alt="Dog on an outdoor walk with calm pet travel essentials nearby"
               className="hero-lifestyle-image"
               fill
               priority
               sizes="(min-width: 960px) 45vw, 100vw"
-              src="/images/landing/hero_image.png"
+              src="/images/landing/pet-walk-hero-option-1.jpg"
             />
             <div className="hero-kit-list" aria-hidden="true">
-              <span>Water bottle</span>
-              <span>2-in-1 bottle</span>
-              <span>Travel bowl</span>
+              <span>Hydrate</span>
+              <span>Clean</span>
+              <span>Carry</span>
             </div>
             <div className="hero-visual-caption">
-              <span>Focused collection</span>
-              <strong>3 essentials. One easier outdoor routine.</strong>
+              <span>Hydrate. Clean. Carry.</span>
+              <strong>A calmer outdoor routine in fewer pieces.</strong>
             </div>
           </div>
         </div>
@@ -171,10 +149,11 @@ export default function Home() {
         <div className="container intro-layout">
           <div className="section-heading">
             <p className="eyebrow">Why it matters</p>
-            <h2>The little walk-day problems add up fast.</h2>
+            <h2>Every outing asks for the same three things.</h2>
             <p>
               Pets get thirsty, bags get crowded, and outdoor stops can get
-              messy. PawTrail keeps the kit simple with only the essentials.
+              messy. Wag & Roam keeps the routine focused: hydrate, clean,
+              and carry.
             </p>
           </div>
 
@@ -195,14 +174,14 @@ export default function Home() {
           <div className="collection-header">
             <div className="section-heading">
               <p className="eyebrow">The launch collection</p>
-              <h2>Only the essentials. Nothing random.</h2>
+              <h2>Hydrate, clean, and carry with fewer loose extras.</h2>
               <p>
-                Three practical accessories for daily walks, outdoor breaks,
-                and pet-friendly travel.
+                Start with one practical piece or compare the full collection
+                for daily walks, outdoor breaks, and pet-friendly travel.
               </p>
             </div>
             <Link className="button button-secondary" href="/shop">
-              View Products
+              Compare Products
             </Link>
           </div>
 
@@ -225,11 +204,12 @@ export default function Home() {
       <section className="section section-muted">
         <div className="container homepage-trust-layout">
           <div className="section-heading">
-            <p className="eyebrow">Trust and support</p>
-            <h2>Simple products with support details kept visible.</h2>
+            <p className="eyebrow">Why Wag & Roam</p>
+            <h2>Premium essentials without a complicated routine.</h2>
             <p>
-              The store is still being prepared for live checkout, so policy
-              details stay easy to find before any real orders are accepted.
+              The store stays focused on practical pet-parent moments: clear
+              product roles, easy policy access, and support details kept close
+              to checkout.
             </p>
           </div>
           <div className="trust-grid" aria-label="Store trust points">
@@ -251,7 +231,7 @@ export default function Home() {
           <div className="collection-header">
             <div className="section-heading">
               <p className="eyebrow">Before you order</p>
-              <h2>Questions before your first order?</h2>
+              <h2>Quick answers before choosing.</h2>
             </div>
             <Link className="button button-secondary" href="/faq">
               View All FAQs
@@ -273,14 +253,14 @@ export default function Home() {
         <div className="container final-cta-card">
           <div className="section-heading">
             <p className="eyebrow">Ready when you are</p>
-            <h2>Start with one accessory or build the full kit.</h2>
+            <h2>Start with one essential or build the full routine.</h2>
             <p>
-              Choose the product that matches your routine, or compare all
-              three before adding to cart.
+              Choose the product that fits today’s walk, or compare the full
+              collection before adding to cart.
             </p>
           </div>
           <Link className="button button-primary" href="/shop">
-            Shop the 3-Piece Walk Kit
+            Shop Wag & Roam Essentials
           </Link>
         </div>
       </section>

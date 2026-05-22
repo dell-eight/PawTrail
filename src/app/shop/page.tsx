@@ -5,9 +5,9 @@ import { products } from "@/data/products";
 import { buildSeoMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildSeoMetadata({
-  title: "Shop Pet Walk & Travel Accessories | Simple Outdoor Essentials",
+  title: "Shop Wag & Roam Pet Walk & Travel Essentials",
   description:
-    "Browse three minimalist pet walk and travel accessories for hydration, snacks, feeding, and outdoor care during everyday outings.",
+    "Browse three minimalist pet walk and travel essentials for hydration, after-walk cleanup, and organized carry.",
 });
 
 const trustBadges = [
@@ -23,10 +23,10 @@ export default function ShopPage() {
         <div className="container shop-hero-layout">
           <div className="section-heading">
             <p className="eyebrow">Shop the essentials</p>
-              <h1>Pet travel essentials for easier walks and trips.</h1>
-              <p className="lede">
-              A focused three-product collection for hydration, snacks, and
-              food or water breaks outside the home.
+            <h1>Pet travel essentials for calmer walks and cleaner returns.</h1>
+            <p className="lede">
+              A focused three-product collection for hydration, after-walk
+              cleanup, and organized carry outside the home.
             </p>
           </div>
 
@@ -48,8 +48,8 @@ export default function ShopPage() {
               <p className="eyebrow">All products</p>
               <h2>Everything in the store, clearly shown.</h2>
               <p>
-                No long category list. Just the three launch essentials for pet
-                walks, outdoor breaks, and travel days.
+                No long category list. Just the three launch essentials for
+                hydrate, clean, and carry routines.
               </p>
             </div>
           </div>
@@ -76,8 +76,8 @@ export default function ShopPage() {
             <div className="comparison-row comparison-head" role="row">
               <span role="columnheader">Product</span>
               <span role="columnheader">Best for</span>
-              <span role="columnheader">Main benefit</span>
-              <span role="columnheader">Included</span>
+              <span role="columnheader">Solves</span>
+              <span role="columnheader">Helps with</span>
               <span role="columnheader">Price</span>
             </div>
             {products.map((product) => (
@@ -88,11 +88,11 @@ export default function ShopPage() {
                 <span data-label="Best for" role="cell">
                   {product.bestFor}
                 </span>
-                <span data-label="Main benefit" role="cell">
+                <span data-label="Solves" role="cell">
                   {product.mainBenefit}
                 </span>
-                <span data-label="Included" role="cell">
-                  {product.whatsIncluded[0]}
+                <span data-label="Helps with" role="cell">
+                  {product.features[0]}
                 </span>
                 <span data-label="Price" role="cell">
                   {product.price}
@@ -107,7 +107,7 @@ export default function ShopPage() {
         <div className="container shop-trust-layout">
           <div className="section-heading">
             <p className="eyebrow">Before checkout</p>
-            <h2>Simple support for a simple store.</h2>
+            <h2>Clear support for a focused routine.</h2>
           </div>
 
           <div className="badge-row" aria-label="Shop trust badges">
@@ -119,7 +119,7 @@ export default function ShopPage() {
           </div>
 
           <Link className="button button-primary" href="/#bundles">
-            Build Your Pet Walk Kit
+            Build Your Pet Outing Routine
           </Link>
         </div>
       </section>
