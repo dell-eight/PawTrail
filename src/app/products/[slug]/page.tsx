@@ -5,7 +5,7 @@ import { AddToCartButton } from "@/components/add-to-cart-button";
 import { ProductViewTracker } from "@/components/product-view-tracker";
 import { getProductBySlug, getProductSlugs, products } from "@/data/products";
 import { productVisualClasses } from "@/lib/product-visuals";
-import { buildSeoMetadata } from "@/lib/seo";
+import { buildSeoMetadata, getSiteUrl } from "@/lib/seo";
 
 type ProductPageProps = {
   params: Promise<{
@@ -76,6 +76,99 @@ const faqs: Record<string, { question: string; answer: string }[]> = {
   ],
 };
 
+const productFitGuides: Record<string, { title: string; body: string }[]> = {
+  "walksip-portable-dog-water-bottle": [
+    {
+      title: "Choose it for",
+      body: "Daily walks, park breaks, errands, and quick car rides.",
+    },
+    {
+      title: "Best paired with",
+      body: "CleanPaws when you want water breaks and a cleaner return.",
+    },
+    {
+      title: "Keep in mind",
+      body: "Use a larger separate bowl for long meals or extended stops.",
+    },
+  ],
+  "foldbowl-collapsible-pet-travel-bowl": [
+    {
+      title: "Choose it for",
+      body: "Light after-walk mess before getting into the car or home.",
+    },
+    {
+      title: "Best paired with",
+      body: "RoamPack so cleanup items stay easy to grab while traveling.",
+    },
+    {
+      title: "Keep in mind",
+      body: "This is everyday cleanup support, not a medical or sanitizing product.",
+    },
+  ],
+  "trailpack-2-in-1-pet-water-treat-bottle": [
+    {
+      title: "Choose it for",
+      body: "Longer walks, park days, car rides, and small travel essentials.",
+    },
+    {
+      title: "Best paired with",
+      body: "RoamSip and CleanPaws for a complete hydrate, clean, carry routine.",
+    },
+    {
+      title: "Keep in mind",
+      body: "Empty and reset it after outings so the next walk starts ready.",
+    },
+  ],
+};
+
+const productRoutineSteps: Record<
+  string,
+  { title: string; body: string }[]
+> = {
+  "walksip-portable-dog-water-bottle": [
+    {
+      title: "Fill before heading out",
+      body: "Keep it near the leash area, stroller, or car kit so water is ready.",
+    },
+    {
+      title: "Offer quick water breaks",
+      body: "Use the attached bowl area during walks, errands, parks, and travel stops.",
+    },
+    {
+      title: "Rinse and dry",
+      body: "Clean with mild soap as needed and let it dry fully before storing.",
+    },
+  ],
+  "foldbowl-collapsible-pet-travel-bowl": [
+    {
+      title: "Pack it where mess happens",
+      body: "Keep it in a walk bag, car kit, or carry pouch before leaving.",
+    },
+    {
+      title: "Wipe after outdoor moments",
+      body: "Use it for light everyday cleanup after parks, errands, and travel stops.",
+    },
+    {
+      title: "Close and store",
+      body: "Close the pack after use and keep it in a cool, dry place.",
+    },
+  ],
+  "trailpack-2-in-1-pet-water-treat-bottle": [
+    {
+      title: "Load the small essentials",
+      body: "Group cleanup items, clips, and lightweight add-ons before heading out.",
+    },
+    {
+      title: "Move it with the routine",
+      body: "Carry it between the leash area, tote, stroller, or car without repacking.",
+    },
+    {
+      title: "Reset after the outing",
+      body: "Empty, wipe clean as needed, and let it dry before the next trip.",
+    },
+  ],
+};
+
 export function generateStaticParams() {
   return getProductSlugs().map((slug) => ({ slug }));
 }
@@ -93,6 +186,7 @@ export async function generateMetadata({
   return buildSeoMetadata({
     title: `${product.name} | Pet Walk & Travel Accessories`,
     description: product.shortDescription,
+    path: `/products/${product.slug}`,
   });
 }
 
@@ -106,10 +200,36 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
   const relatedBundle = bundleSuggestions[product.slug];
   const relatedFaqs = faqs[product.slug];
+  const fitGuide = productFitGuides[product.slug];
+  const routineSteps = productRoutineSteps[product.slug];
   const visualClass = productVisualClasses[product.slug];
+  const productUrl = new URL(`/products/${product.slug}`, getSiteUrl()).toString();
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.shortDescription,
+    category: product.category,
+    image: [new URL(product.images.primary.src, getSiteUrl()).toString()],
+    brand: {
+      "@type": "Brand",
+      name: "Wag & Roam",
+    },
+    offers: {
+      "@type": "Offer",
+      price: product.price.replace(/[^\d.]/g, ""),
+      priceCurrency: "PHP",
+      availability: "https://schema.org/PreOrder",
+      url: productUrl,
+    },
+  };
 
   return (
     <main className="page-shell product-detail-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       <ProductViewTracker product={product} />
       <section className="section product-hero">
         <div className="container product-hero-grid">
@@ -153,12 +273,26 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             </div>
 
             <div className="product-purchase-panel">
+              <div className="product-purchase-heading">
+                <span className="product-label">Ready for {product.bestFor.toLowerCase()}</span>
+                <strong>{product.sellingAngle}</strong>
+              </div>
+
               <AddToCartButton product={product} />
 
               <p className="product-safe-note">
                 Your cart is saved on this device. Checkout payment setup comes
                 next.
               </p>
+
+              <div className="product-fit-panel" aria-label="Product fit guidance">
+                {fitGuide.map((item) => (
+                  <article className="product-fit-item" key={item.title}>
+                    <span>{item.title}</span>
+                    <p>{item.body}</p>
+                  </article>
+                ))}
+              </div>
 
               <div className="badge-row" aria-label="Product trust notes">
                 {product.trustElements.map((element) => (
@@ -175,15 +309,15 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       <section className="section section-muted">
         <div className="container product-info-grid">
           <article className="info-card">
+            <span className="product-label">Best for</span>
+            <h3>{product.bestFor}</h3>
+          </article>
+          <article className="info-card">
             <span className="product-label">Solves</span>
             <h3>{product.mainBenefit}</h3>
           </article>
           <article className="info-card">
-            <span className="product-label">Pain point solved</span>
-            <p>{product.painPoint}</p>
-          </article>
-          <article className="info-card">
-            <span className="product-label">Best use case</span>
+            <span className="product-label">Good fit if</span>
             <p>{product.idealCustomer}</p>
           </article>
         </div>
@@ -215,25 +349,17 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         <div className="container product-section-layout">
           <div className="section-heading">
             <p className="eyebrow">How it works</p>
-            <h2>Three simple steps.</h2>
+            <h2>A simple routine from pack to reset.</h2>
           </div>
 
           <div className="steps-grid">
-            <article className="step-card">
-              <span>1</span>
-              <h3>Pack it before heading out</h3>
-              <p>Keep it with your leash, bag, or car kit so it is ready.</p>
-            </article>
-            <article className="step-card">
-              <span>2</span>
-              <h3>Use it during outdoor breaks</h3>
-              <p>Use the hydration, cleanup, or carry support that matches the moment.</p>
-            </article>
-            <article className="step-card">
-              <span>3</span>
-              <h3>Reset it after use</h3>
-              <p>Follow the care notes and store it where your next walk starts.</p>
-            </article>
+            {routineSteps.map((step, index) => (
+              <article className="step-card" key={step.title}>
+                <span>{index + 1}</span>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -259,9 +385,9 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           <article className="note-card">
             <h2>Shipping and returns</h2>
             <p>
-              Shipping timelines and return windows will be finalized in the
-              store policies before launch. Support details will be shown clearly
-              at checkout.
+              Shipping timelines, return guidance, and support details stay
+              linked before checkout. Final live-order details should be
+              confirmed before payment is enabled.
             </p>
           </article>
         </div>
@@ -288,18 +414,21 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       <section className="section">
         <div className="container related-bundle-card">
           <div className="section-heading">
-            <p className="eyebrow">Related bundle</p>
+            <p className="eyebrow">Pair it with</p>
             <h2>{relatedBundle.name}</h2>
             <p>{relatedBundle.description}</p>
           </div>
           <Link className="button button-secondary" href={relatedBundle.href}>
-            View Bundle Options
+            View Routine Options
           </Link>
         </div>
       </section>
 
       <div className="mobile-sticky-cta">
-        <span>{product.price}</span>
+        <span>
+          <small>{product.bestFor}</small>
+          {product.price}
+        </span>
         <AddToCartButton product={product} label="Add to Cart" />
       </div>
     </main>

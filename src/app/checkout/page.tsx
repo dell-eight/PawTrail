@@ -3,9 +3,10 @@ import { CheckoutForm } from "@/components/checkout-form";
 import { buildSeoMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildSeoMetadata({
-  title: "Checkout | Pet Walk & Travel Accessories",
+  title: "Checkout Preview | Wag & Roam Pet Essentials",
   description:
-    "Review your pet walk essentials and prepare checkout details safely before payment integration is connected.",
+    "Review your Wag & Roam cart and checkout preview safely before live payment integration is connected.",
+  path: "/checkout",
 });
 
 export default function CheckoutPage() {

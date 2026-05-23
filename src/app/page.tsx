@@ -14,6 +14,7 @@ import {
 export const metadata: Metadata = buildSeoMetadata({
   title: homepageTitle,
   description: homepageDescription,
+  path: "/",
 });
 
 const heroTrustCues = [
@@ -49,44 +50,42 @@ const bestForLabels: Record<string, string> = {
   "trailpack-2-in-1-pet-water-treat-bottle": "Carry essentials",
 };
 
-const homepageTrustBadges = [
+const homepageTrustItems = [
   {
-    href: "/checkout",
-    label: "Checkout status clearly labeled",
+    title: "Calmer outings",
+    body: "Hydration, cleanup, and carry support are grouped around the way pet parents actually leave the house.",
+    href: "/#bundles",
+    cta: "View routines",
   },
   {
-    href: "/shipping-policy",
-    label: "Shipping details easy to find",
-  },
-  {
-    href: "/refund-policy",
-    label: "Refund guidance kept visible",
-  },
-  {
-    href: "/contact",
-    label: "Support before ordering",
-  },
-  {
+    title: "Clear product roles",
+    body: "Each product has one obvious job, so choosing the right essential stays simple on mobile.",
     href: "/shop",
-    label: "Focused 3-piece collection",
+    cta: "Compare products",
+  },
+  {
+    title: "Support before checkout",
+    body: "Checkout status, shipping notes, refund guidance, and contact details stay easy to find before ordering.",
+    href: "/faq",
+    cta: "Read FAQs",
   },
 ];
 
 const faqPreviewItems = [
   {
-    question: "How long does shipping take?",
+    question: "Is checkout live yet?",
     answer:
-      "Shipping timelines will be shown clearly before checkout is enabled for live orders.",
-  },
-  {
-    question: "What payment methods do you accept?",
-    answer:
-      "Payment options will be shown securely once the checkout provider is connected.",
+      "Checkout is currently presented as a clear preview. Live payment and shipping details should be confirmed before real orders are accepted.",
   },
   {
     question: "Which product should I start with?",
     answer:
       "Start with hydration for daily walks, cleanup for messy returns, or organized carry for longer outings.",
+  },
+  {
+    question: "How should I care for the products?",
+    answer:
+      "Follow each product's care notes, keep items dry between outings, and confirm supplier instructions before launch.",
   },
 ];
 
@@ -213,13 +212,15 @@ export default function Home() {
             </p>
           </div>
           <div className="trust-grid" aria-label="Store trust points">
-            {homepageTrustBadges.map((badge) => (
+            {homepageTrustItems.map((item) => (
               <Link
-                className="trust-badge trust-badge-large"
-                href={badge.href}
-                key={badge.label}
+                className="trust-card"
+                href={item.href}
+                key={item.title}
               >
-                {badge.label}
+                <span className="product-label">{item.title}</span>
+                <strong>{item.body}</strong>
+                <span>{item.cta}</span>
               </Link>
             ))}
           </div>
@@ -252,15 +253,15 @@ export default function Home() {
       <section className="section final-cta-section">
         <div className="container final-cta-card">
           <div className="section-heading">
-            <p className="eyebrow">Ready when you are</p>
+            <p className="eyebrow">Ready to compare</p>
             <h2>Start with one essential or build the full routine.</h2>
             <p>
-              Choose the product that fits today’s walk, or compare the full
+              Choose the product that fits today's walk, or compare the full
               collection before adding to cart.
             </p>
           </div>
           <Link className="button button-primary" href="/shop">
-            Shop Wag & Roam Essentials
+            Compare the Essentials
           </Link>
         </div>
       </section>

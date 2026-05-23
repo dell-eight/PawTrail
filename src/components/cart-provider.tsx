@@ -32,7 +32,7 @@ type CartContextValue = {
 };
 
 const CartContext = createContext<CartContextValue | null>(null);
-const CART_STORAGE_KEY = "petstore-cart";
+const CART_STORAGE_KEY = "wag-roam-cart";
 
 function parsePesoPrice(price: string) {
   return Number(price.replace(/[^\d]/g, ""));
@@ -166,6 +166,7 @@ export function useCart() {
 
 function CartDrawer() {
   const drawerRef = useRef<HTMLElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
   const {
     closeCart,
     decreaseItem,
@@ -178,9 +179,13 @@ function CartDrawer() {
 
   useEffect(() => {
     if (!isCartOpen) {
+      previousFocusRef.current?.focus();
+      previousFocusRef.current = null;
       return;
     }
 
+    previousFocusRef.current =
+      document.activeElement instanceof HTMLElement ? document.activeElement : null;
     drawerRef.current?.focus();
 
     function handleKeyDown(event: KeyboardEvent) {
@@ -198,6 +203,7 @@ function CartDrawer() {
     <div
       aria-hidden={!isCartOpen}
       className={`cart-drawer-layer ${isCartOpen ? "cart-drawer-open" : ""}`}
+      hidden={!isCartOpen}
     >
       <button
         className="cart-backdrop"
@@ -206,7 +212,7 @@ function CartDrawer() {
         onClick={closeCart}
       />
       <aside
-        aria-label="Shopping cart"
+        aria-labelledby="cart-drawer-title"
         aria-modal="true"
         className="cart-drawer"
         ref={drawerRef}
@@ -216,7 +222,9 @@ function CartDrawer() {
         <div className="cart-drawer-header">
           <div>
             <p className="eyebrow">Your cart</p>
-            <h2>Pet walk kit</h2>
+            <h2 id="cart-drawer-title">
+              {items.length > 0 ? "Review your outing kit" : "Start your outing kit"}
+            </h2>
           </div>
           <button
             className="cart-icon-button"
@@ -229,16 +237,21 @@ function CartDrawer() {
         </div>
 
         {items.length > 0 ? (
-          <div className="cart-item-list">
+          <div className="cart-item-list" aria-label="Cart items">
             {items.map((item) => (
               <article className="cart-item" key={item.product.id}>
                 <div>
                   <h3>{item.product.name}</h3>
-                  <p>{item.product.price}</p>
+                  <p>
+                    {item.product.bestFor} · {item.product.price}
+                  </p>
                 </div>
 
                 <div className="cart-item-actions">
-                  <div className="quantity-control" aria-label="Quantity controls">
+                  <div
+                    className="quantity-control"
+                    aria-label={`Quantity controls for ${item.product.name}`}
+                  >
                     <button
                       type="button"
                       aria-label={`Decrease ${item.product.name} quantity`}
@@ -258,6 +271,7 @@ function CartDrawer() {
                   <button
                     className="cart-remove-button"
                     type="button"
+                    aria-label={`Remove ${item.product.name} from cart`}
                     onClick={() => removeItem(item.product.id)}
                   >
                     Remove
@@ -269,35 +283,45 @@ function CartDrawer() {
         ) : (
           <div className="cart-empty-state">
             <h3>Your cart is empty.</h3>
-            <p>Add a pet walk essential to start building your kit.</p>
+            <p>
+              Add one Wag & Roam essential to start a simple hydrate, clean, or
+              carry routine.
+            </p>
             <Link className="button button-secondary" href="/shop" onClick={closeCart}>
-              Shop Products
+              Compare Essentials
             </Link>
           </div>
         )}
 
         <div className="cart-summary">
           <p>
-            Shipping timeline and delivery cost details should be confirmed
-            before accepting live orders.
+            Checkout is a preview. Shipping costs and payment options should be
+            confirmed before live orders are accepted.
+          </p>
+          <p className="cart-live-status" aria-live="polite" role="status">
+            {items.length > 0
+              ? `${items.length} product${items.length === 1 ? "" : "s"} in cart.`
+              : "Cart is empty."}
           </p>
           <div className="cart-subtotal-row">
             <span>Subtotal</span>
             <strong>{formatPeso(subtotal)}</strong>
           </div>
-          <Link
-            className={`button button-primary button-full ${
-              items.length === 0 ? "button-disabled" : ""
-            }`}
-            href="/checkout"
-            aria-disabled={items.length === 0}
-            onClick={items.length === 0 ? undefined : closeCart}
-          >
-            Proceed to Checkout
-          </Link>
+          {items.length > 0 ? (
+            <Link
+              className="button button-primary button-full"
+              href="/checkout"
+              onClick={closeCart}
+            >
+              Review Checkout Preview
+            </Link>
+          ) : (
+            <button className="button button-primary button-full" type="button" disabled>
+              Add an Item to Continue
+            </button>
+          )}
           <p className="cart-checkout-note">
-            Checkout is prepared. Payment provider integration is not connected
-            yet.
+            No payment is collected and no order is submitted from this preview.
           </p>
         </div>
       </aside>

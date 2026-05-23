@@ -5,6 +5,7 @@ export const metadata: Metadata = buildSeoMetadata({
   title: "Privacy Policy | Pet Walk & Travel Accessories",
   description:
     "Privacy policy details for customer information, order support, payment providers, and store contact information.",
+  path: "/privacy-policy",
 });
 
 const sections = [

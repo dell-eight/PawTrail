@@ -8,12 +8,25 @@ export const metadata: Metadata = buildSeoMetadata({
   title: "Shop Wag & Roam Pet Walk & Travel Essentials",
   description:
     "Browse three minimalist pet walk and travel essentials for hydration, after-walk cleanup, and organized carry.",
+  path: "/shop",
 });
 
-const trustBadges = [
-  "Checkout status clearly labeled",
-  "Policy pages easy to find",
-  "Support details before ordering",
+const conversionSupportItems = [
+  {
+    title: "Compare by need",
+    body: "Choose Hydrate, Clean, or Carry based on the routine you want to improve first.",
+    href: "#comparison",
+  },
+  {
+    title: "Check care notes",
+    body: "Each product page lists simple use and care guidance before you add to cart.",
+    href: "/faq",
+  },
+  {
+    title: "Review support details",
+    body: "Shipping, refund, checkout, and contact pages stay visible before live ordering.",
+    href: "/faq",
+  },
 ];
 
 export default function ShopPage() {
@@ -65,7 +78,7 @@ export default function ShopPage() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" id="comparison">
         <div className="container comparison-layout">
           <div className="section-heading">
             <p className="eyebrow">Quick comparison</p>
@@ -106,15 +119,20 @@ export default function ShopPage() {
       <section className="section section-muted">
         <div className="container shop-trust-layout">
           <div className="section-heading">
-            <p className="eyebrow">Before checkout</p>
+            <p className="eyebrow">Before you choose</p>
             <h2>Clear support for a focused routine.</h2>
+            <p>
+              A small collection should make decisions easier, not add more
+              work before checkout.
+            </p>
           </div>
 
-          <div className="badge-row" aria-label="Shop trust badges">
-            {trustBadges.map((badge) => (
-              <span className="trust-badge" key={badge}>
-                {badge}
-              </span>
+          <div className="conversion-support-grid" aria-label="Shop conversion support">
+            {conversionSupportItems.map((item) => (
+              <Link className="trust-card" href={item.href} key={item.title}>
+                <span className="product-label">{item.title}</span>
+                <strong>{item.body}</strong>
+              </Link>
             ))}
           </div>
 

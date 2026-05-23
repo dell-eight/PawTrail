@@ -21,25 +21,47 @@ export function getSiteUrl() {
 type SeoMetadataOptions = {
   title: string;
   description: string;
+  path?: string;
+  image?: string;
+  type?: "website" | "article";
 };
 
 export function buildSeoMetadata({
   title,
   description,
+  path = "/",
+  image = "/images/landing/pet-walk-hero-option-1.jpg",
+  type = "website",
 }: SeoMetadataOptions): Metadata {
+  const siteUrl = getSiteUrl();
+  const url = new URL(path, siteUrl).toString();
+
   return {
     title,
     description,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title,
       description,
       siteName,
-      type: "website",
+      type,
+      url,
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: `${siteName} pet walk and travel essentials`,
+        },
+      ],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title,
       description,
+      images: [image],
     },
   };
 }

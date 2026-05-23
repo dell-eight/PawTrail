@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
-  <title id="title">FoldBowl folded view</title>
-  <desc id="desc">Minimal detail placeholder showing the compact folded shape of FoldBowl.</desc>
+  <title id="title">CleanPaws compact pack detail</title>
+  <desc id="desc">Minimal detail placeholder showing the compact CleanPaws cleanup pack for a walk bag.</desc>
   <rect width="800" height="800" fill="#fbf8f1"/>
   <ellipse cx="400" cy="410" rx="250" ry="100" fill="#ffffff" stroke="#21382f" stroke-width="28"/>
   <ellipse cx="400" cy="410" rx="165" ry="54" fill="#91aa88" opacity=".7"/>

@@ -6,6 +6,7 @@ export const metadata: Metadata = buildSeoMetadata({
   title: "About | Pet Walk & Travel Accessories",
   description:
     "Learn about a focused pet walk and travel accessories store built around hydration, cleanup, and organized carry essentials.",
+  path: "/about",
 });
 
 const values = [

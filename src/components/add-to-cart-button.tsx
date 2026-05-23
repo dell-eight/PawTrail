@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import type { Product } from "@/data/products";
 import { useCart } from "@/components/cart-provider";
 
@@ -15,10 +16,32 @@ export function AddToCartButton({
   product,
 }: AddToCartButtonProps) {
   const { addItem } = useCart();
+  const [isAdded, setIsAdded] = useState(false);
+
+  useEffect(() => {
+    if (!isAdded) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => setIsAdded(false), 1400);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [isAdded]);
+
+  function handleAddToCart() {
+    addItem(product);
+    setIsAdded(true);
+  }
 
   return (
-    <button className={className} type="button" onClick={() => addItem(product)}>
-      {label ?? product.ctaText}
+    <button
+      aria-live="polite"
+      className={className}
+      data-added={isAdded}
+      type="button"
+      onClick={handleAddToCart}
+    >
+      {isAdded ? "Added to Cart" : label ?? product.ctaText}
     </button>
   );
 }

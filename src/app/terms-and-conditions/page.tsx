@@ -5,6 +5,7 @@ export const metadata: Metadata = buildSeoMetadata({
   title: "Terms & Conditions | Pet Walk & Travel Accessories",
   description:
     "Terms and conditions for using the pet walk and travel accessories store, product information, orders, shipping, and refunds.",
+  path: "/terms-and-conditions",
 });
 
 const sections = [

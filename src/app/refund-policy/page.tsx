@@ -5,6 +5,7 @@ export const metadata: Metadata = buildSeoMetadata({
   title: "Refund Policy | Pet Walk & Travel Accessories",
   description:
     "Refund policy details for pet walk and travel accessory orders, including damaged items, wrong items, and returns guidance.",
+  path: "/refund-policy",
 });
 
 const sections = [

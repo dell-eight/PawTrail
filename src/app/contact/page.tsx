@@ -5,6 +5,7 @@ export const metadata: Metadata = buildSeoMetadata({
   title: "Contact | Pet Walk & Travel Accessories",
   description:
     "Contact support with questions about pet walk and travel accessories, product details, orders, or launch policy information.",
+  path: "/contact",
 });
 
 export default function ContactPage() {
@@ -23,7 +24,7 @@ export default function ContactPage() {
 
       <section className="section section-muted">
         <div className="container contact-layout">
-          <form className="contact-form">
+          <div className="contact-form" role="form" aria-label="Contact support preview form">
             <div className="checkout-card-heading">
               <p className="eyebrow">Contact form</p>
               <h2>Message support</h2>
@@ -34,11 +35,16 @@ export default function ContactPage() {
             </label>
             <label>
               Email
-              <input type="email" name="email" autoComplete="email" />
+              <input
+                type="email"
+                name="email"
+                autoComplete="email"
+                inputMode="email"
+              />
             </label>
             <label>
               Order number, if available
-              <input type="text" name="orderNumber" />
+              <input type="text" name="orderNumber" autoComplete="off" />
             </label>
             <label>
               Message
@@ -47,11 +53,11 @@ export default function ContactPage() {
             <button className="button button-primary button-full" type="button" disabled>
               Form Submission Setup Pending
             </button>
-            <p className="checkout-form-note">
+            <p className="checkout-form-note" aria-live="polite" role="status">
               This pre-launch form is not connected yet, so it does not submit
               or store messages.
             </p>
-          </form>
+          </div>
 
           <aside className="support-panel">
             <article className="content-card">

@@ -19,16 +19,29 @@ export const metadata: Metadata = {
     template: `%s | ${siteName}`,
   },
   description: homepageDescription,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: homepageTitle,
     description: homepageDescription,
     siteName,
     type: "website",
+    url: "/",
+    images: [
+      {
+        url: "/images/landing/pet-walk-hero-option-1.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Wag & Roam pet walk and travel essentials",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: homepageTitle,
     description: homepageDescription,
+    images: ["/images/landing/pet-walk-hero-option-1.jpg"],
   },
   robots: {
     index: true,
@@ -58,8 +71,13 @@ export default function RootLayout({
           tikTokPixelId={process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID}
         />
         <CartProvider>
+          <a className="skip-link" href="#main-content">
+            Skip to content
+          </a>
           <SiteHeader />
-          {children}
+          <div id="main-content" tabIndex={-1}>
+            {children}
+          </div>
           <SiteFooter />
         </CartProvider>
       </body>

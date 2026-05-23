@@ -5,6 +5,7 @@ export const metadata: Metadata = buildSeoMetadata({
   title: "Shipping Policy | Pet Walk & Travel Accessories",
   description:
     "Shipping policy details for pet walk and travel accessory orders, including delivery timelines, tracking, and address guidance.",
+  path: "/shipping-policy",
 });
 
 export default function ShippingPolicyPage() {

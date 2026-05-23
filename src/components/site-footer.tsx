@@ -9,10 +9,10 @@ const footerLinks = [
 ];
 
 const footerTrustBadges = [
-  { href: "/checkout", label: "Checkout setup clearly marked" },
-  { href: "/refund-policy", label: "Clear refund policy" },
-  { href: "/contact", label: "Support available before launch" },
-  { href: "/shop", label: "Pet-friendly essentials" },
+  { href: "/checkout", label: "Checkout status visible" },
+  { href: "/shipping-policy", label: "Shipping notes easy to find" },
+  { href: "/refund-policy", label: "Refund guidance visible" },
+  { href: "/contact", label: "Support before ordering" },
 ];
 
 export function SiteFooter() {

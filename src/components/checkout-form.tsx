@@ -8,7 +8,14 @@ import { trackBeginCheckout } from "@/lib/analytics";
 const trustNotes = [
   "Checkout preview only",
   "No payment collected yet",
-  "Policies linked before live orders",
+  "Cart saved on this device",
+  "Policies linked before ordering",
+];
+
+const checkoutSteps = [
+  "Review cart",
+  "Add contact details",
+  "Confirm policies",
 ];
 
 function formatPeso(amount: number) {
@@ -16,7 +23,7 @@ function formatPeso(amount: number) {
 }
 
 export function CheckoutForm() {
-  const { items, itemCount, subtotal } = useCart();
+  const { items, itemCount, openCart, subtotal } = useCart();
   const hasTrackedBeginCheckout = useRef(false);
 
   useEffect(() => {
@@ -49,6 +56,27 @@ export function CheckoutForm() {
         </div>
       </section>
 
+      <section className="section checkout-status-section">
+        <div className="container checkout-status-card">
+          <div>
+            <p className="eyebrow">Checkout status</p>
+            <h2>Preview mode is active.</h2>
+            <p>
+              You can review the flow and cart summary, but this page will not
+              submit customer details, process payment, or create an order.
+            </p>
+          </div>
+          <ol className="checkout-step-list" aria-label="Checkout preview steps">
+            {checkoutSteps.map((step, index) => (
+              <li key={step}>
+                <span>{index + 1}</span>
+                {step}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       <section className="section section-muted">
         <div className="container checkout-layout">
           <form
@@ -68,11 +96,21 @@ export function CheckoutForm() {
                 </label>
                 <label>
                   Email address
-                  <input name="email" type="email" autoComplete="email" />
+                  <input
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    inputMode="email"
+                  />
                 </label>
                 <label>
                   Mobile number
-                  <input name="phone" type="tel" autoComplete="tel" />
+                  <input
+                    name="phone"
+                    type="tel"
+                    autoComplete="tel"
+                    inputMode="tel"
+                  />
                 </label>
               </div>
             </section>
@@ -98,7 +136,12 @@ export function CheckoutForm() {
                 </label>
                 <label>
                   Postal code
-                  <input name="postalCode" type="text" autoComplete="postal-code" />
+                  <input
+                    name="postalCode"
+                    type="text"
+                    autoComplete="postal-code"
+                    inputMode="numeric"
+                  />
                 </label>
               </div>
             </section>
@@ -133,7 +176,7 @@ export function CheckoutForm() {
             <button className="button button-primary button-full" type="submit" disabled>
               Payment Setup Pending
             </button>
-            <p className="checkout-form-note">
+            <p className="checkout-form-note" aria-live="polite" role="status">
               This checkout form is a safe pre-launch UI foundation only. It
               does not submit orders, process payments, or store customer
               details yet.
@@ -167,10 +210,22 @@ export function CheckoutForm() {
               </div>
             ) : (
               <div className="summary-empty">
-                <p>Your cart is empty. Add a product before checkout.</p>
-                <Link className="button button-secondary" href="/shop">
-                  Shop Products
-                </Link>
+                <p>
+                  Your cart is empty. Compare the essentials or open the cart
+                  drawer before reviewing checkout.
+                </p>
+                <div className="summary-action-row">
+                  <Link className="button button-secondary" href="/shop">
+                    Compare Essentials
+                  </Link>
+                  <button
+                    className="button button-secondary"
+                    type="button"
+                    onClick={openCart}
+                  >
+                    Open Cart
+                  </button>
+                </div>
               </div>
             )}
 
@@ -180,9 +235,23 @@ export function CheckoutForm() {
             </div>
 
             <p className="support-note">
-              Support details for damaged or wrong items should be finalized
-              before checkout is enabled.
+              Review shipping, refund, and privacy details before live checkout
+              is enabled.
             </p>
+            <div className="summary-policy-links" aria-label="Checkout policy links">
+              <Link href="/shipping-policy">Shipping</Link>
+              <Link href="/refund-policy">Refunds</Link>
+              <Link href="/privacy-policy">Privacy</Link>
+            </div>
+            {items.length > 0 ? (
+              <button
+                className="button button-secondary button-full"
+                type="button"
+                onClick={openCart}
+              >
+                Edit Cart
+              </button>
+            ) : null}
           </aside>
         </div>
       </section>

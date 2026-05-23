@@ -73,6 +73,7 @@ export function SiteHeader() {
         className={`mobile-nav ${isMenuOpen ? "mobile-nav-open" : ""}`}
         id="mobile-navigation"
         aria-label="Mobile navigation"
+        hidden={!isMenuOpen}
       >
         <div className="container mobile-nav-inner">
           {navigationLinks.map((link) => (

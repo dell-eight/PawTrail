@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
-  <title id="title">WalkSip outdoor use</title>
-  <desc id="desc">Minimal lifestyle placeholder for WalkSip during an outdoor walk.</desc>
+  <title id="title">RoamSip outdoor use</title>
+  <desc id="desc">Minimal lifestyle placeholder for RoamSip during an outdoor walk.</desc>
   <rect width="800" height="800" fill="#fbf8f1"/>
   <path d="M0 560c170-60 320-62 800 30v210H0z" fill="#e7dac7"/>
   <circle cx="650" cy="150" r="70" fill="#c98768" opacity=".35"/>
