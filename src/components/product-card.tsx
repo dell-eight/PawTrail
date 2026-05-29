@@ -1,19 +1,25 @@
 import Link from "next/link";
 import { AddToCartButton } from "@/components/add-to-cart-button";
+import { MotionCard } from "@/components/ui/motion-reveal";
 import type { Product } from "@/data/products";
 import { productVisualClasses } from "@/lib/product-visuals";
 
 type ProductCardProps = {
   product: Product;
   bestFor?: string;
+  revealDelay?: number;
 };
 
-export function ProductCard({ product, bestFor }: ProductCardProps) {
+export function ProductCard({
+  product,
+  bestFor,
+  revealDelay = 0,
+}: ProductCardProps) {
   const bestForLabel = bestFor ?? product.bestFor;
   const featurePreview = product.features.slice(0, 3);
 
   return (
-    <article className="product-card" id={product.slug}>
+    <MotionCard className="product-card" delay={revealDelay} id={product.slug}>
       <div
         className={`product-image-placeholder product-visual ${productVisualClasses[product.slug]}`}
         role="img"
@@ -49,6 +55,6 @@ export function ProductCard({ product, bestFor }: ProductCardProps) {
           View Details
         </Link>
       </div>
-    </article>
+    </MotionCard>
   );
 }

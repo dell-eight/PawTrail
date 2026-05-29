@@ -4,6 +4,19 @@ import Link from "next/link";
 import { BundleSection } from "@/components/bundle-section";
 import { ProductCard } from "@/components/product-card";
 import { ProductSelector } from "@/components/product-selector";
+import {
+  HeroCopy,
+  HeroDepthLayer,
+  HeroItem,
+  HeroMedia,
+  HeroSection,
+} from "@/components/ui/hero-section-2";
+import {
+  Reveal,
+  RevealSection,
+  Stagger,
+  StaggerItem,
+} from "@/components/ui/motion-reveal";
 import { products } from "@/data/products";
 import {
   buildSeoMetadata,
@@ -92,11 +105,13 @@ const faqPreviewItems = [
 export default function Home() {
   return (
     <main className="page-shell">
-      <section className="section section-hero homepage-hero">
+      <HeroSection className="section section-hero homepage-hero">
         <div className="container hero-grid">
-          <div className="stack stack-lg">
-            <p className="eyebrow">Wag & Roam walk and travel essentials</p>
-            <div className="stack">
+          <HeroCopy className="stack stack-lg">
+            <HeroItem>
+              <p className="eyebrow">Wag & Roam walk and travel essentials</p>
+            </HeroItem>
+            <HeroItem className="stack">
               <h1>
                 Premium pet outing essentials for calmer walks, cleaner stops,
                 and easier carry.
@@ -106,31 +121,33 @@ export default function Home() {
                 pet essentials, made for daily walks, park breaks, errands, and
                 travel days.
               </p>
-            </div>
-            <div className="button-row">
+            </HeroItem>
+            <HeroItem className="button-row">
               <Link className="button button-primary" href="/shop">
                 Shop the Essentials
               </Link>
               <a className="button button-secondary" href="#product-selector">
                 Find Your Outing Kit
               </a>
-            </div>
-            <div className="hero-trust-list" aria-label="Wag and Roam trust cues">
+            </HeroItem>
+            <HeroItem className="hero-trust-list" aria-label="Wag and Roam trust cues">
               {heroTrustCues.map((cue) => (
                 <span key={cue}>{cue}</span>
               ))}
-            </div>
-          </div>
+            </HeroItem>
+          </HeroCopy>
 
-          <div className="hero-lifestyle">
-            <Image
-              alt="Dog on an outdoor walk with calm pet travel essentials nearby"
-              className="hero-lifestyle-image"
-              fill
-              priority
-              sizes="(min-width: 960px) 45vw, 100vw"
-              src="/images/landing/pet-walk-hero-option-1.jpg"
-            />
+          <HeroMedia className="hero-lifestyle">
+            <HeroDepthLayer className="hero-depth-layer">
+              <Image
+                alt="Dog on an outdoor walk with calm pet travel essentials nearby"
+                className="hero-lifestyle-image"
+                fill
+                priority
+                sizes="(min-width: 960px) 45vw, 100vw"
+                src="/images/landing/hero_img.avif"
+              />
+            </HeroDepthLayer>
             <div className="hero-kit-list" aria-hidden="true">
               <span>Hydrate</span>
               <span>Clean</span>
@@ -140,13 +157,13 @@ export default function Home() {
               <span>Hydrate. Clean. Carry.</span>
               <strong>A calmer outdoor routine in fewer pieces.</strong>
             </div>
-          </div>
+          </HeroMedia>
         </div>
-      </section>
+      </HeroSection>
 
-      <section className="section section-muted" id="product-guide">
+      <RevealSection className="section section-muted" id="product-guide">
         <div className="container intro-layout">
-          <div className="section-heading">
+          <Reveal className="section-heading">
             <p className="eyebrow">Why it matters</p>
             <h2>Every outing asks for the same three things.</h2>
             <p>
@@ -154,23 +171,25 @@ export default function Home() {
               messy. Wag & Roam keeps the routine focused: hydrate, clean,
               and carry.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="problem-list">
+          <Stagger className="problem-list" delay={0.08}>
             {problemSolutions.map((item) => (
-              <article className="problem-card" key={item.problem}>
-                <span className="problem-label">{item.problem}</span>
-                <h3>{item.solution}</h3>
-                <p>{item.description}</p>
-              </article>
+              <StaggerItem key={item.problem}>
+                <article className="problem-card">
+                  <span className="problem-label">{item.problem}</span>
+                  <h3>{item.solution}</h3>
+                  <p>{item.description}</p>
+                </article>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section" id="essentials">
+      <RevealSection className="section" id="essentials">
         <div className="container collection-layout">
-          <div className="collection-header">
+          <Reveal className="collection-header">
             <div className="section-heading">
               <p className="eyebrow">The launch collection</p>
               <h2>Hydrate, clean, and carry with fewer loose extras.</h2>
@@ -182,27 +201,28 @@ export default function Home() {
             <Link className="button button-secondary" href="/shop">
               Compare Products
             </Link>
-          </div>
+          </Reveal>
 
           <div className="product-collection-grid">
-            {products.map((product) => (
+            {products.map((product, index) => (
               <ProductCard
                 bestFor={bestForLabels[product.slug]}
                 key={product.id}
                 product={product}
+                revealDelay={index * 0.08}
               />
             ))}
           </div>
         </div>
-      </section>
+      </RevealSection>
 
       <ProductSelector />
 
       <BundleSection />
 
-      <section className="section section-muted">
+      <RevealSection className="section section-muted">
         <div className="container homepage-trust-layout">
-          <div className="section-heading">
+          <Reveal className="section-heading">
             <p className="eyebrow">Why Wag & Roam</p>
             <h2>Premium essentials without a complicated routine.</h2>
             <p>
@@ -210,26 +230,24 @@ export default function Home() {
               product roles, easy policy access, and support details kept close
               to checkout.
             </p>
-          </div>
-          <div className="trust-grid" aria-label="Store trust points">
+          </Reveal>
+          <Stagger className="trust-grid" aria-label="Store trust points" delay={0.08}>
             {homepageTrustItems.map((item) => (
-              <Link
-                className="trust-card"
-                href={item.href}
-                key={item.title}
-              >
-                <span className="product-label">{item.title}</span>
-                <strong>{item.body}</strong>
-                <span>{item.cta}</span>
-              </Link>
+              <StaggerItem key={item.title}>
+                <Link className="trust-card" href={item.href}>
+                  <span className="product-label">{item.title}</span>
+                  <strong>{item.body}</strong>
+                  <span>{item.cta}</span>
+                </Link>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section section-muted">
+      <RevealSection className="section section-muted">
         <div className="container faq-preview-layout">
-          <div className="collection-header">
+          <Reveal className="collection-header">
             <div className="section-heading">
               <p className="eyebrow">Before you order</p>
               <h2>Quick answers before choosing.</h2>
@@ -237,20 +255,22 @@ export default function Home() {
             <Link className="button button-secondary" href="/faq">
               View All FAQs
             </Link>
-          </div>
+          </Reveal>
 
-          <div className="faq-preview-grid">
+          <Stagger className="faq-preview-grid" delay={0.08}>
             {faqPreviewItems.map((item) => (
-              <details className="faq-card faq-accordion" key={item.question}>
-                <summary>{item.question}</summary>
-                <p>{item.answer}</p>
-              </details>
+              <StaggerItem key={item.question}>
+                <details className="faq-card faq-accordion">
+                  <summary>{item.question}</summary>
+                  <p>{item.answer}</p>
+                </details>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section final-cta-section">
+      <RevealSection className="section final-cta-section">
         <div className="container final-cta-card">
           <div className="section-heading">
             <p className="eyebrow">Ready to compare</p>
@@ -264,7 +284,7 @@ export default function Home() {
             Compare the Essentials
           </Link>
         </div>
-      </section>
+      </RevealSection>
     </main>
   );
 }

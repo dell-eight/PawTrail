@@ -2,6 +2,12 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import {
+  Reveal,
+  RevealSection,
+  Stagger,
+  StaggerItem,
+} from "@/components/ui/motion-reveal";
 import { products, type Product } from "@/data/products";
 
 type Bundle = {
@@ -83,47 +89,50 @@ export function BundleSection() {
   );
 
   return (
-    <section className="section" id="bundles">
+    <RevealSection className="section" id="bundles">
       <div className="container bundle-layout">
-        <div className="section-heading">
+        <Reveal className="section-heading">
           <p className="eyebrow">Kit ideas</p>
           <h2>Build your pet outing routine around the day.</h2>
           <p>
             Pair the essentials by how you hydrate, clean up, and carry what
             your pet needs outside the home.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="bundle-selector-panel">
+        <Reveal className="bundle-selector-panel" delay={0.08}>
           <fieldset className="bundle-choice-list">
             <legend>Choose a routine idea</legend>
-            {bundles.map((bundle) => (
-              <label
-                className="bundle-choice"
-                data-selected={bundle.id === selectedBundleId}
-                htmlFor={`bundle-choice-${bundle.id}`}
-                key={bundle.id}
-              >
-                <input
-                  checked={bundle.id === selectedBundleId}
-                  id={`bundle-choice-${bundle.id}`}
-                  name="bundle-choice"
-                  onChange={() => setSelectedBundleId(bundle.id)}
-                  type="radio"
-                  value={bundle.id}
-                />
-                <div className="bundle-card-heading">
-                  <span className="product-label">{bundle.savingsMessage}</span>
-                  <h3>{bundle.name}</h3>
-                </div>
+            <Stagger className="bundle-choice-stack" delay={0.08}>
+              {bundles.map((bundle) => (
+                <StaggerItem key={bundle.id}>
+                  <label
+                    className="bundle-choice"
+                    data-selected={bundle.id === selectedBundleId}
+                    htmlFor={`bundle-choice-${bundle.id}`}
+                  >
+                    <input
+                      checked={bundle.id === selectedBundleId}
+                      id={`bundle-choice-${bundle.id}`}
+                      name="bundle-choice"
+                      onChange={() => setSelectedBundleId(bundle.id)}
+                      type="radio"
+                      value={bundle.id}
+                    />
+                    <div className="bundle-card-heading">
+                      <span className="product-label">{bundle.savingsMessage}</span>
+                      <h3>{bundle.name}</h3>
+                    </div>
 
-                <p>{bundle.bestUseCase}</p>
+                    <p>{bundle.bestUseCase}</p>
 
-                <span className="bundle-choice-meta">
-                  {bundle.productSlugs.length} products included
-                </span>
-              </label>
-            ))}
+                    <span className="bundle-choice-meta">
+                      {bundle.productSlugs.length} products included
+                    </span>
+                  </label>
+                </StaggerItem>
+              ))}
+            </Stagger>
           </fieldset>
 
           <article className="bundle-card bundle-summary" aria-live="polite">
@@ -155,13 +164,15 @@ export function BundleSection() {
               {selectedBundle.ctaText}
             </Link>
           </article>
-        </div>
+        </Reveal>
 
-        <p className="bundle-note">
-          Bundle availability and final product pairings can be finalized before
-          launch.
-        </p>
+        <Reveal delay={0.12}>
+          <p className="bundle-note">
+            Bundle availability and final product pairings can be finalized before
+            launch.
+          </p>
+        </Reveal>
       </div>
-    </section>
+    </RevealSection>
   );
 }

@@ -3,6 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AddToCartButton } from "@/components/add-to-cart-button";
 import { ProductViewTracker } from "@/components/product-view-tracker";
+import {
+  Reveal,
+  RevealSection,
+  Stagger,
+  StaggerItem,
+} from "@/components/ui/motion-reveal";
 import { getProductBySlug, getProductSlugs, products } from "@/data/products";
 import { productVisualClasses } from "@/lib/product-visuals";
 import { buildSeoMetadata, getSiteUrl } from "@/lib/seo";
@@ -231,9 +237,9 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
       />
       <ProductViewTracker product={product} />
-      <section className="section product-hero">
+      <RevealSection className="section product-hero">
         <div className="container product-hero-grid">
-          <div className="product-gallery" aria-label={`${product.name} gallery`}>
+          <Reveal className="product-gallery" aria-label={`${product.name} gallery`}>
             <div
               className={`product-gallery-main product-visual ${visualClass}`}
               role="img"
@@ -253,9 +259,9 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
 
-          <div className="product-hero-copy">
+          <Reveal className="product-hero-copy" delay={0.08} direction="left">
             <p className="eyebrow">{product.category}</p>
             <div className="stack">
               <h1>{product.name}</h1>
@@ -302,116 +308,136 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 ))}
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section section-muted">
-        <div className="container product-info-grid">
-          <article className="info-card">
-            <span className="product-label">Best for</span>
-            <h3>{product.bestFor}</h3>
-          </article>
-          <article className="info-card">
-            <span className="product-label">Solves</span>
-            <h3>{product.mainBenefit}</h3>
-          </article>
-          <article className="info-card">
-            <span className="product-label">Good fit if</span>
-            <p>{product.idealCustomer}</p>
-          </article>
+      <RevealSection className="section section-muted">
+        <div className="container">
+          <Stagger className="product-info-grid">
+            <StaggerItem>
+              <article className="info-card">
+                <span className="product-label">Best for</span>
+                <h3>{product.bestFor}</h3>
+              </article>
+            </StaggerItem>
+            <StaggerItem>
+              <article className="info-card">
+                <span className="product-label">Solves</span>
+                <h3>{product.mainBenefit}</h3>
+              </article>
+            </StaggerItem>
+            <StaggerItem>
+              <article className="info-card">
+                <span className="product-label">Good fit if</span>
+                <p>{product.idealCustomer}</p>
+              </article>
+            </StaggerItem>
+          </Stagger>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section">
+      <RevealSection className="section">
         <div className="container product-section-layout">
-          <div className="section-heading">
+          <Reveal className="section-heading">
             <p className="eyebrow">Features</p>
             <h2>Simple details that support outdoor routines.</h2>
             <p>
               The focus is practical use during walks, parks, errands, and
               travel days rather than complicated gear.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="feature-grid">
+          <Stagger className="feature-grid" delay={0.08}>
             {product.features.map((feature, index) => (
-              <article className="feature-card" key={feature}>
-                <span aria-hidden="true">{index + 1}</span>
-                <p>{feature}</p>
-              </article>
+              <StaggerItem key={feature}>
+                <article className="feature-card">
+                  <span aria-hidden="true">{index + 1}</span>
+                  <p>{feature}</p>
+                </article>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section section-muted">
+      <RevealSection className="section section-muted">
         <div className="container product-section-layout">
-          <div className="section-heading">
+          <Reveal className="section-heading">
             <p className="eyebrow">How it works</p>
             <h2>A simple routine from pack to reset.</h2>
-          </div>
+          </Reveal>
 
-          <div className="steps-grid">
+          <Stagger className="steps-grid" delay={0.08}>
             {routineSteps.map((step, index) => (
-              <article className="step-card" key={step.title}>
-                <span>{index + 1}</span>
-                <h3>{step.title}</h3>
-                <p>{step.body}</p>
-              </article>
+              <StaggerItem key={step.title}>
+                <article className="step-card">
+                  <span>{index + 1}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.body}</p>
+                </article>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section">
-        <div className="container product-notes-grid">
-          <article className="note-card">
-            <h2>What's included</h2>
-            <ul className="product-detail-list">
-              {product.whatsIncluded.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </article>
-          <article className="note-card">
-            <h2>Care notes</h2>
-            <ul className="product-detail-list">
-              {product.careNotes.map((note) => (
-                <li key={note}>{note}</li>
-              ))}
-            </ul>
-          </article>
-          <article className="note-card">
-            <h2>Shipping and returns</h2>
-            <p>
-              Shipping timelines, return guidance, and support details stay
-              linked before checkout. Final live-order details should be
-              confirmed before payment is enabled.
-            </p>
-          </article>
-        </div>
-      </section>
+      <RevealSection className="section">
+        <Stagger className="container product-notes-grid">
+          <StaggerItem>
+            <article className="note-card">
+              <h2>What's included</h2>
+              <ul className="product-detail-list">
+                {product.whatsIncluded.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          </StaggerItem>
+          <StaggerItem>
+            <article className="note-card">
+              <h2>Care notes</h2>
+              <ul className="product-detail-list">
+                {product.careNotes.map((note) => (
+                  <li key={note}>{note}</li>
+                ))}
+              </ul>
+            </article>
+          </StaggerItem>
+          <StaggerItem>
+            <article className="note-card">
+              <h2>Shipping and returns</h2>
+              <p>
+                Shipping timelines, return guidance, and support details stay
+                linked before checkout. Final live-order details should be
+                confirmed before payment is enabled.
+              </p>
+            </article>
+          </StaggerItem>
+        </Stagger>
+      </RevealSection>
 
-      <section className="section section-muted">
+      <RevealSection className="section section-muted">
         <div className="container product-section-layout">
-          <div className="section-heading">
+          <Reveal className="section-heading">
             <p className="eyebrow">Product FAQ</p>
             <h2>Helpful details before choosing.</h2>
-          </div>
+          </Reveal>
 
-          <div className="faq-grid">
+          <Stagger className="faq-grid" delay={0.08}>
             {relatedFaqs.map((faq) => (
-              <details className="faq-card faq-accordion" key={faq.question}>
-                <summary>{faq.question}</summary>
-                <p>{faq.answer}</p>
-              </details>
+              <StaggerItem key={faq.question}>
+                <details className="faq-card faq-accordion">
+                  <summary>{faq.question}</summary>
+                  <p>{faq.answer}</p>
+                </details>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section">
+      <RevealSection className="section">
         <div className="container related-bundle-card">
           <div className="section-heading">
             <p className="eyebrow">Pair it with</p>
@@ -422,7 +448,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             View Routine Options
           </Link>
         </div>
-      </section>
+      </RevealSection>
 
       <div className="mobile-sticky-cta">
         <span>

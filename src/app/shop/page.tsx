@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ProductCard } from "@/components/product-card";
+import {
+  Reveal,
+  RevealSection,
+  Stagger,
+  StaggerItem,
+} from "@/components/ui/motion-reveal";
 import { products } from "@/data/products";
 import { buildSeoMetadata } from "@/lib/seo";
 
@@ -32,31 +38,31 @@ const conversionSupportItems = [
 export default function ShopPage() {
   return (
     <main className="page-shell">
-      <section className="section shop-hero">
+      <RevealSection className="section shop-hero">
         <div className="container shop-hero-layout">
-          <div className="section-heading">
+          <Reveal className="section-heading">
             <p className="eyebrow">Shop the essentials</p>
             <h1>Pet travel essentials for calmer walks and cleaner returns.</h1>
             <p className="lede">
               A focused three-product collection for hydration, after-walk
               cleanup, and organized carry outside the home.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="shop-summary-card">
+          <Reveal className="shop-summary-card" delay={0.1} direction="left">
             <span className="product-label">Launch collection</span>
             <strong>3 products</strong>
             <p>
               Curated for practical pet parents who want less clutter and a
               more prepared outdoor routine.
             </p>
-          </div>
+          </Reveal>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section section-muted">
+      <RevealSection className="section section-muted">
         <div className="container collection-layout">
-          <div className="collection-header">
+          <Reveal className="collection-header">
             <div className="section-heading">
               <p className="eyebrow">All products</p>
               <h2>Everything in the store, clearly shown.</h2>
@@ -65,27 +71,28 @@ export default function ShopPage() {
                 hydrate, clean, and carry routines.
               </p>
             </div>
-          </div>
+          </Reveal>
 
           <div className="product-collection-grid">
-            {products.map((product) => (
+            {products.map((product, index) => (
               <ProductCard
                 key={product.id}
                 product={product}
+                revealDelay={index * 0.08}
               />
             ))}
           </div>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section" id="comparison">
+      <RevealSection className="section" id="comparison">
         <div className="container comparison-layout">
-          <div className="section-heading">
+          <Reveal className="section-heading">
             <p className="eyebrow">Quick comparison</p>
             <h2>Choose by outdoor need.</h2>
-          </div>
+          </Reveal>
 
-          <div className="comparison-table" role="table" aria-label="Product comparison">
+          <Stagger className="comparison-table" role="table" aria-label="Product comparison">
             <div className="comparison-row comparison-head" role="row">
               <span role="columnheader">Product</span>
               <span role="columnheader">Best for</span>
@@ -94,7 +101,7 @@ export default function ShopPage() {
               <span role="columnheader">Price</span>
             </div>
             {products.map((product) => (
-              <div className="comparison-row" key={product.id} role="row">
+              <StaggerItem className="comparison-row" key={product.id} role="row">
                 <span data-label="Product" role="cell">
                   {product.name}
                 </span>
@@ -110,37 +117,41 @@ export default function ShopPage() {
                 <span data-label="Price" role="cell">
                   {product.price}
                 </span>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section section-muted">
+      <RevealSection className="section section-muted">
         <div className="container shop-trust-layout">
-          <div className="section-heading">
+          <Reveal className="section-heading">
             <p className="eyebrow">Before you choose</p>
             <h2>Clear support for a focused routine.</h2>
             <p>
               A small collection should make decisions easier, not add more
               work before checkout.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="conversion-support-grid" aria-label="Shop conversion support">
+          <Stagger className="conversion-support-grid" aria-label="Shop conversion support">
             {conversionSupportItems.map((item) => (
-              <Link className="trust-card" href={item.href} key={item.title}>
-                <span className="product-label">{item.title}</span>
-                <strong>{item.body}</strong>
-              </Link>
+              <StaggerItem key={item.title}>
+                <Link className="trust-card" href={item.href}>
+                  <span className="product-label">{item.title}</span>
+                  <strong>{item.body}</strong>
+                </Link>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
 
-          <Link className="button button-primary" href="/#bundles">
-            Build Your Pet Outing Routine
-          </Link>
+          <Reveal delay={0.12}>
+            <Link className="button button-primary" href="/#bundles">
+              Build Your Pet Outing Routine
+            </Link>
+          </Reveal>
         </div>
-      </section>
+      </RevealSection>
     </main>
   );
 }

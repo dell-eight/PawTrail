@@ -2,6 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import {
+  Reveal,
+  RevealSection,
+  Stagger,
+  StaggerItem,
+} from "@/components/ui/motion-reveal";
 import { products } from "@/data/products";
 
 type SelectorOption = {
@@ -77,41 +83,42 @@ export function ProductSelector() {
     selectedProductName ?? selectedOption.recommendationTitle;
 
   return (
-    <section className="section section-muted" id="product-selector">
+    <RevealSection className="section section-muted" id="product-selector">
       <div className="container selector-layout">
-        <div className="section-heading">
+        <Reveal className="section-heading">
           <p className="eyebrow">Quick product finder</p>
           <h2>Choose by the outing job you want to solve.</h2>
           <p>
             Answer one simple question and get a practical recommendation from
             the hydrate, clean, and carry routine.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="selector-panel">
+        <Reveal className="selector-panel" delay={0.08}>
           <fieldset className="selector-quiz">
             <legend>What do you need most for walks or travel?</legend>
-            <div className="selector-options">
+            <Stagger className="selector-options" delay={0.08}>
               {selectorOptions.map((option) => (
-                <label
-                  className="selector-option"
-                  data-selected={option.id === selectedId}
-                  htmlFor={`selector-option-${option.id}`}
-                  key={option.id}
-                >
-                  <input
-                    checked={option.id === selectedId}
-                    id={`selector-option-${option.id}`}
-                    name="pet-outdoor-need"
-                    onChange={() => setSelectedId(option.id)}
-                    type="radio"
-                    value={option.id}
-                  />
-                  <span>{option.need}</span>
-                  <strong>{option.label}</strong>
-                </label>
+                <StaggerItem key={option.id}>
+                  <label
+                    className="selector-option"
+                    data-selected={option.id === selectedId}
+                    htmlFor={`selector-option-${option.id}`}
+                  >
+                    <input
+                      checked={option.id === selectedId}
+                      id={`selector-option-${option.id}`}
+                      name="pet-outdoor-need"
+                      onChange={() => setSelectedId(option.id)}
+                      type="radio"
+                      value={option.id}
+                    />
+                    <span>{option.need}</span>
+                    <strong>{option.label}</strong>
+                  </label>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
           </fieldset>
 
           <article
@@ -132,12 +139,12 @@ export function ProductSelector() {
               </ul>
             ) : null}
 
-            <Link className="button button-primary" href={selectedOption.ctaHref}>
-              {selectedOption.ctaText}
-            </Link>
+          <Link className="button button-primary" href={selectedOption.ctaHref}>
+            {selectedOption.ctaText}
+          </Link>
           </article>
-        </div>
+        </Reveal>
       </div>
-    </section>
+    </RevealSection>
   );
 }
